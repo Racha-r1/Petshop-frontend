@@ -4,7 +4,7 @@ const Nav = () => {
 
     return (
         <nav id="header" class="w-full z-30 top-0 py-1">
-        <div class="sm:w-full lg:w-11/12 container mx-auto flex flex-wrap items-center justify-between mt-0 px-6 py-3">
+        <div class="sm:w-full lg:w-11/12 container mx-auto flex flex-wrap items-center justify-between mt-0 px-6 py-3 border-b border-gray-400">
 
             <label for="menu-toggle" class="cursor-pointer md:hidden block">
                 <svg class="fill-current text-gray-900" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
