@@ -15,19 +15,19 @@ const Footer = () => {
                                 <h3 class="font-bold text-gray-900">Klantenservice</h3>
                                     <ul>
                                         <li>
-                                            <a class="inline-block no-underline hover:text-black hover:underline py-1" href="#">Bestellingen en Leveringen</a>
+                                            <button class="inline-block no-underline hover:text-black hover:underline py-1">Bestellingen en Leveringen</button>
                                         </li>
                                         <li>
-                                            <a class="inline-block no-underline hover:text-black hover:underline py-1" href="#">Contact Opnemen</a>
+                                            <button class="inline-block no-underline hover:text-black hover:underline py-1">Contact Opnemen</button>
                                         </li>
                                         <li>
-                                            <a class="inline-block no-underline hover:text-black hover:underline py-1" href="#">Betalen</a>
+                                            <button class="inline-block no-underline hover:text-black hover:underline py-1">Betalen</button>
                                         </li>
                                         <li>
-                                            <a class="inline-block no-underline hover:text-black hover:underline py-1" href="#">Retourneren</a>
+                                            <button class="inline-block no-underline hover:text-black hover:underline py-1">Retourneren</button>
                                         </li>
                                         <li>
-                                            <a class="inline-block no-underline hover:text-black hover:underline py-1" href="#">Garantie</a>
+                                            <button class="inline-block no-underline hover:text-black hover:underline py-1">Garantie</button>
                                         </li>
                                     </ul> 
                             </div>
@@ -35,16 +35,16 @@ const Footer = () => {
                                 <h3 class="font-bold text-gray-900">Bedrijf</h3>
                                     <ul>
                                         <li>
-                                            <a class="inline-block no-underline hover:text-black hover:underline py-1" href="#">Over ons</a>
+                                            <button class="inline-block no-underline hover:text-black hover:underline py-1">Over ons</button>
                                         </li>
                                         <li>
-                                            <a class="inline-block no-underline hover:text-black hover:underline py-1" href="#">Contact</a>
+                                            <button class="inline-block no-underline hover:text-black hover:underline py-1">Contact</button>
                                         </li>
                                         <li>
-                                            <a class="inline-block no-underline hover:text-black hover:underline py-1" href="#">Algemene Voorwaarden</a>
+                                            <button class="inline-block no-underline hover:text-black hover:underline py-1">Algemene Voorwaarden</button>
                                         </li>
                                         <li>
-                                            <a class="inline-block no-underline hover:text-black hover:underline py-1" href="#">Jobs</a>
+                                            <button class="inline-block no-underline hover:text-black hover:underline py-1">Jobs</button>
                                         </li>
                                     </ul> 
                             </div>
@@ -56,16 +56,16 @@ const Footer = () => {
                         <h3 class="font-bold text-gray-900">Wil jj ons volgen?</h3>
                         <ul class="flex flex-row justify-between">
                             <li>
-                                <a class="inline-block no-underline hover:text-black hover:underline py-1" href="#"><FontAwesomeIcon icon={faFacebook}/></a>
+                                <button className="inline-block no-underline hover:text-black hover:underline py-1"><FontAwesomeIcon icon={faFacebook}/></button>
                             </li>
                             <li>
-                                <a class="inline-block no-underline hover:text-black hover:underline py-1" href="#"><FontAwesomeIcon icon={faInstagram}/></a>
+                                <button className="inline-block no-underline hover:text-black hover:underline py-1"><FontAwesomeIcon icon={faInstagram}/></button>
                             </li>
                             <li>
-                                <a class="inline-block no-underline hover:text-black hover:underline py-1" href="#"><FontAwesomeIcon icon={faTwitter}/></a>
+                                <button className="inline-block no-underline hover:text-black hover:underline py-1"><FontAwesomeIcon icon={faTwitter}/></button>
                             </li>
                             <li>
-                                <a class="inline-block no-underline hover:text-black hover:underline py-1" href="#"><FontAwesomeIcon icon={faLinkedin}/></a>
+                                <button className="inline-block no-underline hover:text-black hover:underline py-1"><FontAwesomeIcon icon={faLinkedin}/></button>
                             </li>
                         </ul>
                     </div>
