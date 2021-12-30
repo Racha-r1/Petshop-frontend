@@ -15,8 +15,8 @@ const Shop = () => {
     return (
         <section class="bg-white py-8">
             <div className="container lg:w-11/12 sm:w-full  mx-auto flex flex-wrap pt-4 pb-12">
-                <SideBarCategorieen />
-                <div class="flex flex-wrap">
+                <SideBarCategorieen products={products} setProducts={setProducts} />
+                <div class="flex flex-wrap w-3/4">
                 {products.length > 0 && products.map(product => <Product product={product} />)}
                 </div>
             </div>

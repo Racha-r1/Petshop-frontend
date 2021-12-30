@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const Product = ({product}) => {
    
     return (
-    <div class="w-full md:w-1/3 xl:w-2/6 p-6 flex flex-col">
+    <div class="w-full md:w-1/3 xl:w-80	 p-6 flex flex-col ">
             <Link to={`/products/${product.id}`}>
                 <img class="hover:grow hover:shadow-lg" src={product.image} alt="foto" />
             </Link>
