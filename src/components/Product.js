@@ -1,12 +1,14 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 
 const Product = ({product}) => {
    
     return (
-    <div class="w-full md:w-1/3 xl:w-2/5 p-6 flex flex-col">
-        <a href="#">
-            <img class="hover:grow hover:shadow-lg" src={product.image} alt="foto" />
+    <div class="w-full md:w-1/3 xl:w-2/6 p-6 flex flex-col">
+            <Link to={`/products/${product.id}`}>
+                <img class="hover:grow hover:shadow-lg" src={product.image} alt="foto" />
+            </Link>
             <div class="pt-3 flex items-center justify-between">
                 <p class="">{product.name}</p>
                 <button className="bg-black p-3 hover:bg-white border-2 border:black ">
@@ -18,7 +20,6 @@ const Product = ({product}) => {
                 </button>
             </div>
             <p class="pt-1 text-gray-900">{`€ ${parseFloat(product.price).toFixed(2)}`}</p>
-        </a>
     </div>
    );
 
