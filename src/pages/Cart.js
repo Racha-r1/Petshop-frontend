@@ -1,8 +1,10 @@
 import React from "react";
 import CartItem from "../components/CartItem";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const Cart = () => {
 
+   const {isAuthenticated} = useAuth0();
    const cart = JSON.parse(sessionStorage.getItem("cart")) || [];
 
    const total = () => {
@@ -11,6 +13,14 @@ const Cart = () => {
          total += parseFloat(cartItem.product.price) * cartItem.quantity;
       });
       return total.toFixed(2);
+   }
+
+
+   const proceedToCheckout = () => {
+      if (!isAuthenticated){
+         alert("Inloggen is vereist om te bestellen");
+         return;
+      }
    }
 
    return(<div class="container lg:w-11/12 mx-auto mt-10">
@@ -30,7 +40,7 @@ const Cart = () => {
                            <p className="text-md"> {`€ ${total()}`} </p>
                         </div>
                         <div className="flex justify-end">
-                           <button className="transition ease-in-out duration-300 px-3 py-2 bg-gray-800 mx-5 mb-10 text-white border-2 border-gray-800 hover:bg-white hover:text-gray-800"> Bestellen </button>
+                           <button className="transition ease-in-out duration-300 px-3 py-2 bg-gray-800 mx-5 mb-10 text-white border-2 border-gray-800 hover:bg-white hover:text-gray-800" onClick={proceedToCheckout}> Bestellen </button>
                         </div>
                      </div> : null
                 }
