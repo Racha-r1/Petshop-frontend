@@ -9,6 +9,7 @@ import Cart from "./pages/Cart";
 import AdminProducts from "./pages/AdminProducts.js";
 import AdminCategorieën from "./pages/AdminCategorieën";
 import AdminPets from "./pages/AdminPets";
+import {withAuthenticationRequired} from '@auth0/auth0-react';
 
 function App() {
 

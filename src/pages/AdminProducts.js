@@ -2,6 +2,7 @@ import React,{useState, useEffect} from "react";
 import SideBarAdmin from "../components/SidebarAdmin";
 import { getAllProducts } from "../api/products";
 import AdminProduct from "../components/AdminProduct";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const AdminProducts = () => {
 

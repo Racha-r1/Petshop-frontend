@@ -18,7 +18,7 @@ const Login = ({ authorized }) => {
       </>
     );
   } else {
-    
+
     return (
       <div class="relative inline-block text-left z-10">
         <div>

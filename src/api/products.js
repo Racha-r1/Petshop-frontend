@@ -21,3 +21,15 @@ export async function getProductById(id){
     const data = await response.json();
     return data;
 }
+
+
+export async function deleteProductById(id, token){
+    const response = await  fetch(`http://localhost:5000/api/products/${id}`, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+        },
+    });
+    return response.status;
+}
