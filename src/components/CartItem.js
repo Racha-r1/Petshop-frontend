@@ -18,7 +18,7 @@ const CartItem = ({cartItem}) => {
               <p className="text-sm w-36"> {cartItem.product.name} </p>
               <p className="text-sm"> {"x" + cartItem.quantity}</p>
               <p className="text-sm"> {`€ ${parseFloat(cartItem.product.price).toFixed(2)}`}</p>
-              <button onClick={handleDelete} className="hover:opacity-50"> <FontAwesomeIcon icon={faTrashAlt}/> </button>
+              <button onClick={handleDelete} className="transition ease-in-out duration-300 hover:opacity-50"> <FontAwesomeIcon icon={faTrashAlt}/> </button>
          </div>
      )
 
