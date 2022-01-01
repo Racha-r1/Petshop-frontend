@@ -6,6 +6,9 @@ import { Route, Routes } from "react-router-dom";
 import Shop from "./pages/Shop";
 import ProductDetails from "./components/ProductDetails";
 import Cart from "./pages/Cart";
+import AdminProducts from "./pages/AdminProducts.js";
+import AdminCategorieën from "./pages/AdminCategorieën";
+import AdminPets from "./pages/AdminPets";
 
 function App() {
 
@@ -20,6 +23,9 @@ function App() {
                 <Route path="/shop" element={<Shop />} />
                 <Route path="/products/:id" element={<ProductDetails setCart={setCart}/>} />
                 <Route path="/cart" element={<Cart />} />
+                <Route path="/admin/products" element={<AdminProducts />} />
+                <Route path="/admin/categories" element={<AdminCategorieën />} />
+                <Route path="/admin/pets" element={<AdminPets />} />
             </Routes>
           </main>
       <Footer />

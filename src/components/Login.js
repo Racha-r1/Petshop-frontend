@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
+import { Link } from "react-router-dom";
 
 const Login = ({ authorized }) => {
-  const { loginWithRedirect, isAuthenticated, user, logout, getAccessTokenSilently } = useAuth0();
+  const { loginWithRedirect, isAuthenticated, user, logout } = useAuth0();
   const [toggle, setToggle] = useState(false);
 
   if (!isAuthenticated) {
@@ -76,7 +77,7 @@ const Login = ({ authorized }) => {
           ): (
             <>
                <div class="py-3 px-2 text-lg text-color-footer" role="none">
-                  <button onClick={() => window.location = '/user/instellingen' }> Dashboard </button>
+                  <Link to="/admin/products"> Dashboard </Link>
               </div>
               <div class="py-3 px-2 text-lg text-color-footer" role="none">
              <button onClick={() => logout()}> Sign out </button>

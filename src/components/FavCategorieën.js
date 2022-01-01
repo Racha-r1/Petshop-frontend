@@ -1,6 +1,6 @@
 import React from "react";
 
-const FavCategorieen = () => {
+const FavCategorieën = () => {
     return (
         <div className="lg:w-11/12 sm:w-full m-auto mt-10 container mx-auto" >
             <div className="px-3 py-8">
@@ -42,24 +42,4 @@ const FavCategorieen = () => {
 
 }
 
-export default FavCategorieen;
-
-
-
-
-
-
-
-
-
-
-
-
-//hond
-//https://media.os.fressnapf.com/cms/2020/08/5f352fc…efutter_Hundefutter_1200x527.jpg.jpg?t=cmsimg_300
-// kat
-//https://media.os.fressnapf.com/cms/2020/08/5f35300…_Katze_Katzenfutter_1200x527.jpg.jpg?t=cmsimg_300
-// knaagdier
-//https://media.os.fressnapf.com/cms/2020/08/5f3110c…ere_Kleintierfutter_1200x527.jpg.jpg?t=cmsimg_300
-//vogel 
-//https://media.os.fressnapf.com/cms/2020/08/5f316b6…Wilvoegel_Wilvoegel_1200x527.jpg.jpg?t=cmsimg_300
+export default FavCategorieën;
