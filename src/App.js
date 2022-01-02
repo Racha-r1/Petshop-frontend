@@ -11,6 +11,9 @@ import AdminCategorieën from "./pages/AdminCategorieën";
 import AdminPets from "./pages/AdminPets";
 import AdminPetsAanpassen from "./pages/AdminPetsAanpassen";
 import AdminsPetsToevoegen from "./pages/AdminPetsToevoegen";
+import AdminCategoriesAanpassen from "./pages/AdminCategoriesAanpassen";
+import AdminCategoriesToevoegen from "./pages/AdminCategoryToevoegen";
+import AdminProductsToevoegen from "./pages/AdminProductsToevoegen";
 
 function App() {
 
@@ -26,10 +29,13 @@ function App() {
                 <Route path="/products/:id" element={<ProductDetails setCart={setCart}/>} />
                 <Route path="/cart" element={<Cart />} />
                 <Route path="/admin/products" element={<AdminProducts />} />
-                <Route path="/admin/categories" element={<AdminCategorieën />} />
+                <Route path="/admin/products/toevoegen" element={<AdminProductsToevoegen />} />
                 <Route path="/admin/pets" element={<AdminPets />} />
                 <Route path="/admin/pets/aanpassen/:id" element={<AdminPetsAanpassen />} />
                 <Route path="/admin/pets/toevoegen" element={<AdminsPetsToevoegen />} />
+                <Route path="/admin/categories" element={<AdminCategorieën />} />
+                <Route path="/admin/categories/aanpassen/:id" element={<AdminCategoriesAanpassen />} />
+                <Route path="/admin/categories/toevoegen" element={<AdminCategoriesToevoegen />} />
             </Routes>
           </main>
       <Footer />

@@ -33,3 +33,16 @@ export async function deleteProductById(id, token){
     });
     return response.status;
 }
+
+
+export async function addProduct(product, token){
+    const response = await  fetch("http://localhost:5000/api/products", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+        },
+        body: JSON.stringify(product)
+    });
+    return response.status;
+}

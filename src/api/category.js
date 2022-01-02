@@ -31,3 +31,31 @@ export async function deleteCategoryById(id, token){
     });
     return response.status;
 }
+
+
+export async function updateCategoryById(id,category,token){
+    const response = await  fetch(`http://localhost:5000/api/categories/${id}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+        },
+        body: JSON.stringify(category)
+    });
+    const obj = await response.json();
+    console.log(obj);
+    return response.status;
+}
+
+
+export async function addCategory(category, token){
+    const response = await  fetch("http://localhost:5000/api/categories", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+        },
+        body: JSON.stringify(category)
+    });
+    return response.status;
+}
