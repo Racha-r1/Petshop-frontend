@@ -45,7 +45,7 @@ const ProductDetails = ({setCart}) => {
             {
                 product &&  <>
                                 <div className="mr-10">
-                                    <img className="w-full" src={product.image} alt="product" />
+                                    <img className="w-96" src={product.image} alt="product" />
                                 </div>
                                 <div className="flex flex-col lg:justify-around sm:my-8">
                                     <h1 className="text-3xl font-bold">{product.name}</h1>

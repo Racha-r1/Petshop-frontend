@@ -1,28 +1,29 @@
-import React,{useState} from "react";
+import React,{useEffect, useState} from "react";
 import { useParams } from "react-router-dom";
 import SideBarAdmin from "../components/SidebarAdmin";
-import { addProduct } from "../api/products";
-import { getAllPets } from "../api/pets";
+import { getProductById, updateProductById } from "../api/products";
 import { useAuth0 } from "@auth0/auth0-react";
+import { getAllPets } from "../api/pets";
+import { getAllCategories } from "../api/category";
 import { initializeApp } from "firebase/app";
 import { getStorage, ref , uploadBytes,getDownloadURL  } from "firebase/storage";
-import { useEffect } from "react/cjs/react.development";
-import { getAllCategories } from "../api/category";
 
 const config = {
-  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
-  authDomain: process.env.REACT_APP_FIREBASE_AUTHDOMAIN,
-  projectId: process.env.REACT_APP_FIREBASE_PROJECTID,
-  storageBucket: process.env.REACT_APP_FIREBASE_STORAGEBUCKET,
-  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
-  appId: process.env.REACT_APP_FIREBASE_APPID,
-  measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENTID
-};  
-
+    apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+    authDomain: process.env.REACT_APP_FIREBASE_AUTHDOMAIN,
+    projectId: process.env.REACT_APP_FIREBASE_PROJECTID,
+    storageBucket: process.env.REACT_APP_FIREBASE_STORAGEBUCKET,
+    messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+    appId: process.env.REACT_APP_FIREBASE_APPID,
+    measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENTID
+  };  
+  
 const firebaseApp = initializeApp(config);
 
-const AdminProductsToevoegen = () => {
-    
+const AdminProductsAanpassen = () => {
+
+    const {id} = useParams();
+    const [product, setProduct] = useState(undefined);
     const [productName, setproductName] = useState("");
     const [productDescription, setProductDescription] = useState("");
     const [productPrice, setProductPrice] = useState("");
@@ -31,13 +32,32 @@ const AdminProductsToevoegen = () => {
     const [categories, setCategories] = useState([]);
     const [pets, setPets] = useState([]);
 
-    const addProductHandler = async(e) => {
+    useEffect(() => {
+        getProductById(id).then(data => {
+             setProduct(data)
+             setproductName(data.name)
+             setProductDescription(data.description)
+             setProductPrice(data.price)
+            });
+        getAllCategories().then(data => {
+            setCategories(data);
+        });  
+        getAllPets().then(data => {
+            setPets(data);
+        });
+    },[]);
+
+
+    const updateProductHandler = async(e) => {
         e.preventDefault();
-        const storage = getStorage(firebaseApp);
-        const storageRef = ref(storage, `/images/${img.name}`);
-        const snapshot = await uploadBytes(storageRef, img);
-        const downloadURL = await getDownloadURL(snapshot.ref);
-        
+        let downloadURL = product.image;
+        if (img instanceof File){
+            const storage = getStorage(firebaseApp);
+            const storageRef = ref(storage, `/images/${img.name}`);
+            const snapshot = await uploadBytes(storageRef, img);
+            downloadURL = await getDownloadURL(snapshot.ref);
+        }
+      
         if (productName.length < 1 || productDescription.length < 1 || productPrice.length < 1 ){
             alert("Vul alle velden in");
         }
@@ -46,7 +66,7 @@ const AdminProductsToevoegen = () => {
                 alert("Vul een geldige prijs in");
             }
             else {
-                const newProduct = {
+                const updatedProduct = {
                     name: productName,
                     description: productDescription,
                     price: productPrice,
@@ -61,30 +81,20 @@ const AdminProductsToevoegen = () => {
                     }
                 }
                 getAccessTokenSilently().then(token => {
-                    addProduct(newProduct,token).then(status => {
+                    updateProductById(id,updatedProduct,token).then(status => {
                         if (status === 200) {
                             window.location = "/admin/products";
                         }
                     });
                 });
             }
-        }
     }
-
-    useEffect(() => {
-        getAllCategories().then(data => {
-            setCategories(data);
-        });
-        getAllPets().then(data => {
-            setPets(data);
-        });
-    },[]);
-        
-
+}
+    
     return (
         <>
             {
-                <div className="container lg:w-11/12 sm:full mx-auto flex flex-wrap pt-4 pb-12">
+               product &&  <div className="container lg:w-11/12 sm:full mx-auto flex flex-wrap pt-4 pb-12">
                     <SideBarAdmin />
                     <div className="py-8 px-10">
                         <h1 className="text-2xl">Products</h1>
@@ -111,6 +121,12 @@ const AdminProductsToevoegen = () => {
                                     <select className="bg-white shadow-md rounded px-4 py-2 flex-1"  id="product_categorie">
                                         {
                                             categories.map(category => {
+                                                if (category.id === product.category.id){
+                                                    return (
+                                                        <option value={category.id} selected>{category.name}</option>
+                                                    )
+
+                                                } 
                                                 return (
                                                     <option value={category.id}>{category.name}</option>
                                                 )
@@ -123,15 +139,22 @@ const AdminProductsToevoegen = () => {
                                     <select className="bg-white shadow-md rounded px-4 py-2 flex-1" id="product_pet">
                                         {
                                             pets.map(pet => {
-                                                return (
-                                                    <option value={pet.id} >{pet.name}</option>
-                                                )
+                                                if (pet.id === product.pet.id){
+                                                    return (
+                                                        <option value={pet.id} selected>{pet.name}</option>
+                                                    )
+                                                }
+                                                else {
+                                                    return (
+                                                        <option value={pet.id}>{pet.name}</option>
+                                                    )
+                                                }
                                             })
                                         }
                                     </select>
                                 </div>
-                                <button  className="transition ease-in-out duration-300 px-3 py-2 bg-gray-800 text-white border-2 border-gray-800 hover:bg-white hover:text-gray-800" onClick={addProductHandler} required>
-                                    Product opslaan
+                                <button  className="transition ease-in-out duration-300 px-3 py-2 bg-gray-800 text-white border-2 border-gray-800 hover:bg-white hover:text-gray-800" onClick={updateProductHandler} required>
+                                    Product wijzigen
                                 </button>
                             </div>
                         </section>
@@ -141,7 +164,7 @@ const AdminProductsToevoegen = () => {
             }
         </>
     )
-
 }
 
-export default AdminProductsToevoegen;
+
+export default AdminProductsAanpassen;

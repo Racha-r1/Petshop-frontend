@@ -46,3 +46,16 @@ export async function addProduct(product, token){
     });
     return response.status;
 }
+
+
+export async function updateProductById(id, product, token){
+    const response = await  fetch(`http://localhost:5000/api/products/${id}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+        },
+        body: JSON.stringify(product)
+    });
+    return response.status;
+}
