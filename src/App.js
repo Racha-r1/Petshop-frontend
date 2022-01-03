@@ -16,6 +16,8 @@ import AdminCategoriesToevoegen from "./pages/AdminCategoryToevoegen";
 import AdminProductsToevoegen from "./pages/AdminProductsToevoegen";
 import AdminProductsAanpassen from "./pages/AdminProductsAanpassen";
 import CheckoutPage from "./pages/Checkout";
+import UserDashboard from "./pages/UserDashboard";
+import UserOrders from "./pages/UserOrders";
 
 function App() {
 
@@ -40,6 +42,8 @@ function App() {
                 <Route path="/admin/categories" element={<AdminCategorieën />} />
                 <Route path="/admin/categories/aanpassen/:id" element={<AdminCategoriesAanpassen />} />
                 <Route path="/admin/categories/toevoegen" element={<AdminCategoriesToevoegen />} />
+                <Route path="/user/dashboard" element={<UserDashboard />} />
+                <Route path="/user/orders" element={<UserOrders />} />
             </Routes>
           </main>
       <Footer />

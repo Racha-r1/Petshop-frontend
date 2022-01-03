@@ -35,9 +35,7 @@ const Login = ({ authorized }) => {
                 <circle fill="none" cx="12" cy="7" r="3" />
                 <path d="M12 2C9.243 2 7 4.243 7 7s2.243 5 5 5 5-2.243 5-5S14.757 2 12 2zM12 10c-1.654 0-3-1.346-3-3s1.346-3 3-3 3 1.346 3 3S13.654 10 12 10zM21 21v-1c0-3.859-3.141-7-7-7h-4c-3.86 0-7 3.141-7 7v1h2v-1c0-2.757 2.243-5 5-5h4c2.757 0 5 2.243 5 5v1H21z" />
               </svg>
-              <p className="text-lg font-medium  px-3 py-2 text-color-footer">
-                  {user.email}
-              </p>
+             
               <svg
                 class="-mr-1 ml-2 h-5 w-5"
                 xmlns="http://www.w3.org/2000/svg"
@@ -71,6 +69,9 @@ const Login = ({ authorized }) => {
               <a href="/admin/dashboard"> Dashboard </a>
             </div>
             <div class="py-3 px-2 text-lg text-color-footer" role="none">
+              <a href="/user/dashboard"> User dashboard </a>
+            </div>
+            <div class="py-3 px-2 text-lg text-color-footer" role="none">
              <button onClick={() => logout()}> Sign out </button>
            </div>
            </>
@@ -78,6 +79,9 @@ const Login = ({ authorized }) => {
             <>
                <div class="py-3 px-2 text-lg text-color-footer" role="none">
                   <Link to="/admin/products"> Dashboard </Link>
+              </div>
+              <div class="py-3 px-2 text-lg text-color-footer" role="none">
+                <a href="/user/dashboard"> User dashboard </a>
               </div>
               <div class="py-3 px-2 text-lg text-color-footer" role="none">
              <button onClick={() => logout()}> Sign out </button>
