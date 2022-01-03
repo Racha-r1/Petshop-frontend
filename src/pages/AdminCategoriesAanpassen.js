@@ -49,7 +49,7 @@ const AdminCategoriesAanpassen = () => {
                         <h1 className="text-2xl">Categorieën</h1>
                         <section class="bg-white py-8">
                             <div className="container sm:w-full mx-auto flex flex-col flex-wrap pt-4 pb-12 gap-2">
-                                <input className="bg-white shadow-md rounded px-8 py-2 mb-4" type="text" value={categoryName} onChange={(e) => setCategoryName(e.target.value)}  />
+                                <input className="bg-white shadow-md rounded px-4 py-2 mb-4" type="text" value={categoryName} onChange={(e) => setCategoryName(e.target.value)}  />
                                 <button  className="transition ease-in-out duration-300 px-3 py-2 bg-gray-800 text-white border-2 border-gray-800 hover:bg-white hover:text-gray-800" onClick={updateCategory}>
                                     Wijzigingen opslaan
                                 </button>

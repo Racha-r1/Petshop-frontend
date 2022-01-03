@@ -15,6 +15,7 @@ import AdminCategoriesAanpassen from "./pages/AdminCategoriesAanpassen";
 import AdminCategoriesToevoegen from "./pages/AdminCategoryToevoegen";
 import AdminProductsToevoegen from "./pages/AdminProductsToevoegen";
 import AdminProductsAanpassen from "./pages/AdminProductsAanpassen";
+import CheckoutPage from "./pages/Checkout";
 
 function App() {
 
@@ -29,6 +30,7 @@ function App() {
                 <Route path="/shop" element={<Shop setCart={setCart}/>} />
                 <Route path="/products/:id" element={<ProductDetails setCart={setCart}/>} />
                 <Route path="/cart" element={<Cart />} />
+                <Route path="/checkout" element={<CheckoutPage />} />
                 <Route path="/admin/products" element={<AdminProducts />} />
                 <Route path="/admin/products/toevoegen" element={<AdminProductsToevoegen />} />
                 <Route path="/admin/products/aanpassen/:id" element={<AdminProductsAanpassen />} />

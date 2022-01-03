@@ -45,26 +45,32 @@ const SideBarCategorieen = ({products, setProducts}) => {
       
     return (
         <div className="py-8 px-10">
-            <div>
-                <h1 className="sm:text-xl md:text-lg font-bold"> Categorieën </h1>
-                {
-                    categories.length > 0 && categories.map(category => 
-                        <div className="px-2 mt-1">
-                            <input type="checkbox" id={category.name+ "C"} value={category.name} name="filters" onChange={handleChange} />
-                            <label for={category.name}> {category.name} </label>
-                        </div>
-                    )
-                }
+            <div>{
+                
+                categories.length > 0 &&  
+                <>
+                    <h1 className="sm:text-xl md:text-lg font-bold"> Categorieën </h1>
+                        {categories.map(category => 
+                            <div className="px-2 mt-1">
+                                <input type="checkbox" id={category.name+ "C"} value={category.name} name="filters" onChange={handleChange} />
+                                <label for={category.name}> {category.name} </label>
+                            </div>
+                        )}
+                </>
+            }
                 <br/>
-                <h1 className="sm:text-xl md:text-lg font-bold"> Dieren </h1>
-                {
-                    pets.length > 0 && pets.map(pet => 
-                        <div className="px-2 mt-1">
-                            <input type="checkbox" id={pet.name + "P"} value={pet.name} name="filters" onChange={handleChange}  />
-                            <label for={pet.name}> {pet.name} </label>
-                        </div>
-                    )
-                }
+                {   pets.length > 0 && <>
+                    <h1 className="sm:text-xl md:text-lg font-bold"> Dieren </h1>
+                        {
+                        pets.map(pet => 
+                            <div className="px-2 mt-1">
+                                <input type="checkbox" id={pet.name + "P"} value={pet.name} name="filters" onChange={handleChange}  />
+                                <label for={pet.name}> {pet.name} </label>
+                            </div>
+                        )
+                    }
+                </>
+    }
             </div>
         </div>
     )

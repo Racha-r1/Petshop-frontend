@@ -21,6 +21,7 @@ const Cart = () => {
          alert("Inloggen is vereist om te bestellen");
          return;
       }
+      window.location = "/checkout";
    }
 
    return(<div class="container lg:w-11/12 mx-auto mt-10">
@@ -40,7 +41,7 @@ const Cart = () => {
                            <p className="text-md"> {`€ ${total()}`} </p>
                         </div>
                         <div className="flex justify-end">
-                           <button className="transition ease-in-out duration-300 px-3 py-2 bg-gray-800 mx-5 mb-10 text-white border-2 border-gray-800 hover:bg-white hover:text-gray-800" onClick={proceedToCheckout}> Bestellen </button>
+                           <button className="transition ease-in-out duration-300 px-3 py-2 bg-gray-800 mx-5 mb-10 text-white border-2 border-gray-800 hover:bg-white hover:text-gray-800" onClick={proceedToCheckout}> Doorgaan met bestellen </button>
                         </div>
                      </div> : null
                 }
