@@ -35,3 +35,15 @@ export async function getOrdersByUserEmail(email){
     const data = await response.json();
     return data;
 }
+
+
+export async function getOrderById(id){
+    const response = await  fetch(`http://localhost:5000/api/orders/${id}`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    });
+    const data = await response.json();
+    return data;
+}

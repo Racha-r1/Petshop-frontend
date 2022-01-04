@@ -1,6 +1,7 @@
 import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { addOrderItem, addOrder } from "../api/order";
+import AddressSelect from "../components/AddressSelect";
 
 
 const CheckoutPage = () => {
@@ -24,29 +25,38 @@ const CheckoutPage = () => {
         const postcode = document.querySelector("#postcode").value;
         const nummer = document.querySelector("#nummer").value;
         const stad = document.querySelector("#stad").value;
-        const orderItems = [];
-        cart.forEach(cartItem => {
-            orderItems.push({
-                product: cartItem.product.id,
+        const orderItems = cart.map((cartItem) => {
+            return {
+                product: { id: cartItem.product.id},
                 amount: cartItem.quantity
-            });
+            };
+
         });
         const token = await getAccessTokenSilently();
         // hier komen de order items in terecht nadat ze zijn toegevoegd aan de DB we hebben deze id's nodig om de order items te kunnen linken aan een order
-        const items = [];
         // voeg elke item van de order items array toe aan de db 
-        orderItems.forEach(orderItem => {
-            addOrderItem(orderItem,token).then(data => {
-                items.push(data);
-            });
+        const items = [];
+        orderItems.forEach((orderItem) => {
+            console.log(orderItem);
+            addOrderItem(orderItem,token).then(item => {
+                console.log(item);
+                items.push(item)});
         });
         // hier wordt de order aangemaakt met de items die we hebben toegevoegd aan de db
+        console.log(items);
         const order = {
             order_price : total(),
             items: items,
             user_email: user.email,
-            shipping_address: [`${straat} ${nummer}`, `${postcode} ${stad}`].join("\n")
+            shipping_address: {
+                straat: straat,
+                user_email: user.email,
+                postcode: postcode,
+                nummer: nummer,
+                stad: stad
+            }
         };
+        console.log(order);
         // hier wordt de order aangemaakt in de db
         addOrder(order,token).then(res => {
             if (res === 201 || res === 200) {
@@ -65,28 +75,8 @@ const CheckoutPage = () => {
                 <div className="py-8 px-10">
                     <h1 className="text-2xl">Checkout</h1>
                     <div className="flex items-start gap-4 flex-wrap">
-                        <div className="py-9 flex justify-between flex-col flex-1 lg:mr-20">
-                            <h2 className="text-xl">Gegevens</h2>
-                            <div className="flex items-center gap-2 my-5">
-                                <label htmlFor="user_email" className="text-md w-20">Email: </label>
-                                <input type="email" id="user_email" className="bg-white shadow-md rounded px-4 py-2 flex-1 md:flex-initial w-full" value={user.email} readOnly/>
-                            </div>
-                            <div className="flex items-center gap-2 my-5">
-                                <label htmlFor="straat" className="text-md w-20">Straat: </label>
-                                <input type="text" id="straat" className="bg-white shadow-md rounded px-4 py-2 flex-1 md:flex-initial w-full" />
-                            </div>
-                            <div className="flex items-center gap-2 my-5">
-                                <label htmlFor="nummer" className="text-md w-20">Nummer: </label>
-                                <input type="number" id="nummer" className="bg-white shadow-md rounded px-4 py-2 flex-1 md:flex-initial w-full" />
-                            </div>
-                            <div className="flex items-center gap-2 my-5 ">
-                                <label htmlFor="postcode" className="text-md w-20">Postcode: </label>
-                                <input type="number" id="postcode" className="bg-white shadow-md rounded px-4 py-2 flex-1 md:flex-initial w-full" />
-                            </div>
-                            <div className="flex items-center gap-2 my-5">
-                                <label htmlFor="stad" className="text-md w-20">Stad: </label>
-                                <input type="text" id="stad"  className="bg-white shadow-md rounded px-4 py-2 flex-1 md:flex-initial w-full" />
-                            </div>
+                        <div className="py-9">
+                            <AddressSelect />
                         </div>
                         <div className="bg-white shadow-md rounded gap-10 px-4 py-6 flex flex-col flex-wrap mt-5">
                             <h2 className="text-xl">Overzicht van de bestelling</h2>

@@ -28,7 +28,7 @@ const UserOrders = () => {
                             const date  = new Date(order.order_date);
                             return (<div className="bg-white shadow-md rounded px-4 py-6 flex flex-col flex-wrap gap-2 mt-5">
                                 <p> {date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate()} | Bestellingsnummer: {order.id} </p>
-                                <button  className="transition ease-in-out duration-300 px-3 py-2 bg-gray-800 text-white border-2 border-gray-800 hover:bg-white hover:text-gray-800">
+                                <button  className="transition ease-in-out duration-300 px-3 py-2 bg-gray-800 text-white border-2 border-gray-800 hover:bg-white hover:text-gray-800" onClick={() => window.location = "/user/orders/" + order.id}>
                                   Bekijk details van de bestelling
                                 </button>
                             </div> ) })
@@ -38,9 +38,6 @@ const UserOrders = () => {
             </div>}
         </>
     )
-
-
-
 
 }
 

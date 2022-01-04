@@ -18,6 +18,7 @@ import AdminProductsAanpassen from "./pages/AdminProductsAanpassen";
 import CheckoutPage from "./pages/Checkout";
 import UserDashboard from "./pages/UserDashboard";
 import UserOrders from "./pages/UserOrders";
+import UserOrderDetails from "./pages/UserOrderDetails";
 
 function App() {
 
@@ -44,6 +45,7 @@ function App() {
                 <Route path="/admin/categories/toevoegen" element={<AdminCategoriesToevoegen />} />
                 <Route path="/user/dashboard" element={<UserDashboard />} />
                 <Route path="/user/orders" element={<UserOrders />} />
+                <Route path="/user/orders/:id" element={<UserOrderDetails />} />
             </Routes>
           </main>
       <Footer />
