@@ -1,13 +1,16 @@
-import React from "react";
+import React,{useState} from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { addOrderItem, addOrder } from "../api/order";
 import AddressSelect from "../components/AddressSelect";
+import { getAddressById } from "../api/addresses";
 
 
 const CheckoutPage = () => {
 
     const { isAuthenticated, user, isLoading, getAccessTokenSilently } = useAuth0();
     const cart = JSON.parse(sessionStorage.getItem("cart")) || [];
+    const [selected, setSelected] = useState(undefined);
+    const [addresses, setAddresses] = useState([]);
 
 
     const total = () => {
@@ -20,11 +23,18 @@ const CheckoutPage = () => {
 
 
     const handleCheckout = async() => {
+
+        if (addresses.length < 1){
+            alert("Gelieve eerst een bezorgadres toe te voegen aan je account");
+            return;
+        }
+
+        if (selected === undefined){
+            alert("Gelieve eerst een bezorgadres te selecteren");
+            return;
+        }
     
-        const straat = document.querySelector("#straat").value;
-        const postcode = document.querySelector("#postcode").value;
-        const nummer = document.querySelector("#nummer").value;
-        const stad = document.querySelector("#stad").value;
+        
         const orderItems = cart.map((cartItem) => {
             return {
                 product: { id: cartItem.product.id},
@@ -33,31 +43,14 @@ const CheckoutPage = () => {
 
         });
         const token = await getAccessTokenSilently();
-        // hier komen de order items in terecht nadat ze zijn toegevoegd aan de DB we hebben deze id's nodig om de order items te kunnen linken aan een order
-        // voeg elke item van de order items array toe aan de db 
-        const items = [];
-        orderItems.forEach((orderItem) => {
-            console.log(orderItem);
-            addOrderItem(orderItem,token).then(item => {
-                console.log(item);
-                items.push(item)});
-        });
-        // hier wordt de order aangemaakt met de items die we hebben toegevoegd aan de db
-        console.log(items);
+        const address = await getAddressById(selected);
         const order = {
             order_price : total(),
-            items: items,
+            items: orderItems,
             user_email: user.email,
-            shipping_address: {
-                straat: straat,
-                user_email: user.email,
-                postcode: postcode,
-                nummer: nummer,
-                stad: stad
-            }
+            shipping_address: address
         };
-        console.log(order);
-        // hier wordt de order aangemaakt in de db
+         // hier wordt de order aangemaakt in de db
         addOrder(order,token).then(res => {
             if (res === 201 || res === 200) {
                 alert("Order succesvol geplaatst");
@@ -65,7 +58,6 @@ const CheckoutPage = () => {
                 window.location.href = "/";
             }
         });
-
     }
 
         return (
@@ -76,7 +68,7 @@ const CheckoutPage = () => {
                     <h1 className="text-2xl">Checkout</h1>
                     <div className="flex items-start gap-4 flex-wrap">
                         <div className="py-9">
-                            <AddressSelect />
+                            <AddressSelect selected={selected} setSelected={setSelected} addresses={addresses} setAddresses={setAddresses}/>
                         </div>
                         <div className="bg-white shadow-md rounded gap-10 px-4 py-6 flex flex-col flex-wrap mt-5">
                             <h2 className="text-xl">Overzicht van de bestelling</h2>

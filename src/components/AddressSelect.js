@@ -1,12 +1,10 @@
-import React,{useState, useEffect} from "react"
+import React,{useEffect} from "react"
 import { useAuth0 } from "@auth0/auth0-react";
 import { getAddressesOfUserByEmail } from "../api/addresses";
 
-const AddressSelect = () => {
+const AddressSelect = ({selected, setSelected, addresses, setAddresses}) => {
 
     const { isAuthenticated, user } = useAuth0();
-    const [selected, setSelected] = useState(undefined);
-    const [addresses, setAddresses] = useState([]);
 
     useEffect(() => {
         if (isAuthenticated) {
