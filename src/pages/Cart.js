@@ -24,7 +24,7 @@ const Cart = () => {
       window.location = "/checkout";
    }
 
-   return(<div class="container lg:w-11/12 mx-auto mt-10">
+   return(<div class="lg:w-11/12 mx-auto mt-10">
             <h1 className="text-xl font-bold px-5"> Shopping Cart </h1>
             <div className={`${cart.length > 0 ? "flex flex-col my-10 border-b-2 border-gray-400" : "flex flex-col my-10"} `}>
                  {

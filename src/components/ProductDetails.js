@@ -41,7 +41,7 @@ const ProductDetails = ({setCart}) => {
     }
 
     return (
-        <div className="container lg:w-11/12 sm:w-full  mx-auto flex flex-wrap py-12 px-4">
+        <div className="lg:w-11/12 sm:w-full  mx-auto flex flex-wrap py-12 px-4">
             {
                 product &&  <>
                                 <div className="mr-10">

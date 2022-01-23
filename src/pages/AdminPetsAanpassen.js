@@ -41,7 +41,7 @@ const AdminPetsAanpassen = () => {
         <>
             {
                 pet && 
-                <div className="container lg:w-11/12 sm:full mx-auto flex flex-wrap pt-4 pb-12">
+                <div className="lg:w-11/12 sm:full mx-auto flex flex-wrap pt-4 pb-12">
                     <SideBarAdmin />
                     <div className="py-8 px-10">
                         <h1 className="text-2xl">Dieren</h1>

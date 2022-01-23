@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Link } from "react-router-dom";
+import {getUserRoles} from "../api/management_api"
 
 const Login = ({ authorized }) => {
-  const { loginWithRedirect, isAuthenticated, user, logout } = useAuth0();
+  const { loginWithRedirect, isAuthenticated, user, logout, isLoading } = useAuth0();
   const [toggle, setToggle] = useState(false);
+  const [admin, setIsAdmin] = useState(false);
 
   if (!isAuthenticated) {
     return (
@@ -18,7 +20,11 @@ const Login = ({ authorized }) => {
       </>
     );
   } else {
-
+        getUserRoles(user.sub).then(roles => {
+          if (roles[0].name === "Admin"){
+            setIsAdmin(true);
+          }
+        });
     return (
       <div class="relative inline-block text-left z-10">
         <div>
@@ -63,31 +69,20 @@ const Login = ({ authorized }) => {
           aria-labelledby="menu-button"
           tabindex="-1"
         >
-          {authorized ? (
             <>
-            <div class="py-3 px-2 text-lg text-color-footer" role="none">
-              <a href="/admin/dashboard"> Dashboard </a>
-            </div>
-            <div class="py-3 px-2 text-lg text-color-footer" role="none">
-              <a href="/user/dashboard"> User dashboard </a>
-            </div>
-            <div class="py-3 px-2 text-lg text-color-footer" role="none">
-             <button onClick={() => logout()}> Sign out </button>
-           </div>
-           </>
-          ): (
-            <>
-               <div class="py-3 px-2 text-lg text-color-footer" role="none">
-                  <Link to="/admin/products"> Dashboard </Link>
+            {
+              admin ? <div class="py-3 px-2 text-lg text-color-footer" role="none">
+                        <a href="/admin/products"> Dashboard </a>
+                      </div>
+                    : 
+                      <div class="py-3 px-2 text-lg text-color-footer" role="none">
+                        <a href="/user/dashboard"> User dashboard </a>
+                      </div>
+            }
+                <div class="py-3 px-2 text-lg text-color-footer" role="none">
+                <button onClick={() => logout()}> Sign out </button>
               </div>
-              <div class="py-3 px-2 text-lg text-color-footer" role="none">
-                <a href="/user/dashboard"> User dashboard </a>
-              </div>
-              <div class="py-3 px-2 text-lg text-color-footer" role="none">
-             <button onClick={() => logout()}> Sign out </button>
-           </div>
             </>
-          ) }
         </div>
       </div>
     );

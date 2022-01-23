@@ -63,7 +63,7 @@ const CheckoutPage = () => {
         return (
             <>
             {!isLoading && isAuthenticated && 
-            <div className="container lg:w-11/12 sm:full mx-auto pt-4 pb-12">
+            <div className="lg:w-11/12 sm:full mx-auto pt-4 pb-12">
                 <div className="py-8 px-10">
                     <h1 className="text-2xl">Checkout</h1>
                     <div className="flex items-start gap-4 flex-wrap">

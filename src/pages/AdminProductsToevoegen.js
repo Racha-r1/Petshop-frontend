@@ -84,12 +84,12 @@ const AdminProductsToevoegen = () => {
     return (
         <>
             {
-                <div className="container lg:w-11/12 sm:full mx-auto flex flex-wrap pt-4 pb-12">
+                <div className="lg:w-11/12 sm:full mx-auto flex flex-wrap pt-4 pb-12">
                     <SideBarAdmin />
                     <div className="py-8 px-10">
                         <h1 className="text-2xl">Products</h1>
                         <section class="bg-white py-8">
-                            <div className="container sm:w-full mx-auto flex flex-col flex-wrap pt-4 pb-12 gap-2">
+                            <div className="sm:w-full mx-auto flex flex-col flex-wrap pt-4 pb-12 gap-2">
                                 <div className="flex gap-2 items-center flex-wrap mb-4">
                                     <label htmlFor="product_name" className="w-24"> Naam: </label>
                                     <input className="bg-white shadow-md rounded px-4 py-2 flex-1" type="text" value={productName} id="product_name" onChange={(e) => setproductName(e.target.value)} required />

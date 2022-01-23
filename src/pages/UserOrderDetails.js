@@ -19,7 +19,7 @@ const UserOrderDetails = () => {
     return (
 
         <>
-            { isAuthenticated &&  <div className="container lg:w-11/12 sm:full mx-auto flex flex-wrap pt-4 pb-12">
+            { isAuthenticated &&  <div className="lg:w-11/12 sm:full mx-auto flex flex-wrap pt-4 pb-12">
                 <SideBarUser />
                 <div className="py-8 px-10">
                     {  order && <>
