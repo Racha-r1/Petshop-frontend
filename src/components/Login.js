@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import { Link } from "react-router-dom";
 import {getUserRoles} from "../api/management_api"
 
 const Login = ({ authorized }) => {
-  const { loginWithRedirect, isAuthenticated, user, logout, isLoading } = useAuth0();
+  const { loginWithRedirect, isAuthenticated, user, logout } = useAuth0();
   const [toggle, setToggle] = useState(false);
   const [admin, setIsAdmin] = useState(false);
 
@@ -76,7 +75,7 @@ const Login = ({ authorized }) => {
                       </div>
                     : 
                       <div class="py-3 px-2 text-lg text-color-footer" role="none">
-                        <a href="/user/dashboard"> User dashboard </a>
+                        <a href="/user/dashboard"> Dashboard </a>
                       </div>
             }
                 <div class="py-3 px-2 text-lg text-color-footer" role="none">

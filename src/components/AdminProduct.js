@@ -19,7 +19,7 @@ const AdminProduct = ({product}) => {
     }
 
     return (
-    <div class="md:w-1/3 xl:w-80 p-6 flex flex-col ">
+    <div class="md:w-1/3 lg:w-1/3 xl:w-80 p-6 flex flex-col ">
             <Link to={`/products/${product.id}`}>
                 <img class="hover:grow hover:shadow-lg" src={product.image} alt="foto" />
             </Link>

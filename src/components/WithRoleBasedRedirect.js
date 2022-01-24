@@ -11,10 +11,12 @@ const withRoleBasedRedirect = (Component) =>{
     useEffect(() => {
       if (user &&  !isLoading) {
         getUserRoles(user.sub).then(roles => {
-            if (roles[0].name === "Admin"){
-                  setIsAuthorized(true);
-                  setIsFetching(false);
+            if (roles.length > 0){
+              if (roles[0].name === "Admin"){
+                    setIsAuthorized(true);      
+              }
             }
+            setIsFetching(false);
           }
         );
       }
@@ -22,7 +24,7 @@ const withRoleBasedRedirect = (Component) =>{
         setIsFetching(false);
       }
     }, [user, isLoading]);
-    return isAuthorized ? <Component /> : fetching  ? <> </> : <div className="lg:w-11/12 sm:full mx-auto flex flex-wrap pt-4 pb-12"> <h1 className="px-10 text-xl"> You are not authorized to visit this route!</h1></div>;
+    return isAuthorized ? <Component /> : fetching  ? <> </> : <div className="lg:w-11/12 sm:full mx-auto flex flex-wrap pt-4 pb-12"> <h1 className="px-10 text-xl"> You are not authorized to visit this route!</h1></div> ;
     } 
 };
 

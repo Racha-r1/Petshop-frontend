@@ -15,7 +15,7 @@ const AdminProducts = () => {
 
     return (
 
-        <div className="lg:w-11/12 sm:full mx-auto flex flex-wrap pt-4 pb-12">
+        <div className="lg:w-11/12 sm:full mx-auto flex lg:flex-nowrap flex-wrap pt-4 pb-12">
             <SideBarAdmin />
             <div className="py-8">
                 <h1 className="text-2xl px-8">Products</h1>

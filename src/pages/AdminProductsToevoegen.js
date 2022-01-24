@@ -1,5 +1,4 @@
 import React,{useState} from "react";
-import { useParams } from "react-router-dom";
 import SideBarAdmin from "../components/SidebarAdmin";
 import { addProduct } from "../api/products";
 import { getAllPets } from "../api/pets";
